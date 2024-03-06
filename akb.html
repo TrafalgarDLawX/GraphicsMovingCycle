@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moving Cycle</title>
+  </head>
+  <body>
+    <canvas
+      id="myCanvas"
+      width="800"
+      height="600"
+      style="border: 1px solid black"
+    ></canvas>
+
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
+      let i = 0;
+
+      function drawCycle() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+
+        // Upper body of cycle
+        ctx.beginPath();
+        ctx.moveTo(50 + i, 405);
+        ctx.lineTo(100 + i, 405);
+        ctx.lineTo(125 + i, 375);
+        ctx.lineTo(75 + i, 375);
+        ctx.lineTo(50 + i, 405);
+        ctx.moveTo(100 + i, 405);
+        ctx.lineTo(100 + i, 345);
+        ctx.lineTo(150 + i, 405);
+        ctx.lineTo(100 + i, 345);
+        ctx.lineTo(75 + i, 345);
+        ctx.lineTo(75 + i, 370);
+        ctx.lineTo(70 + i, 370);
+        ctx.lineTo(80 + i, 370);
+        ctx.lineTo(80 + i, 345);
+        ctx.stroke();
+
+        // Wheels
+        ctx.beginPath();
+        ctx.arc(150 + i, 405, 30, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(50 + i, 405, 30, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Road
+        ctx.beginPath();
+        ctx.moveTo(0, 436);
+        ctx.lineTo(canvas.width, 436);
+        ctx.stroke();
+
+        // Stone
+        ctx.fillRect(canvas.width - i, 420, 650 - i - (canvas.width - i), 20);
+
+        // my details
+        ctx.fillStyle = "black";
+        ctx.font = "16px Arial";
+        ctx.fillText(
+          "Akash Baral ace078bei005 Computer graphics project",
+          10,
+          canvas.height - 10
+        );
+
+        i++;
+
+        if (i < 600) {
+          requestAnimationFrame(drawCycle);
+        }
+      }
+
+      drawCycle();
+    </script>
+  </body>
+</html>
